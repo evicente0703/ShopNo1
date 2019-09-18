@@ -1,10 +1,9 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿namespace ShopNo1.Web.Data.Entities
 
-
-namespace ShopNo1.Web.Data.Entities
 {
-    public class Product
+    using System;
+    using System.ComponentModel.DataAnnotations;
+    public class Product : IEntity
     {
         public int Id { get; set; }
         [MaxLength(50, ErrorMessage = "The field {0} only can contain {1} characters length.")]
@@ -28,6 +27,8 @@ namespace ShopNo1.Web.Data.Entities
 
         [DisplayFormat(DataFormatString = "{0:N2}", ApplyFormatInEditMode = false)]
         public double Stock { get; set; }
+
+        public User User { get; set; }
 
     }
 }
