@@ -4,8 +4,8 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Entities;
-    using Helpers;
     using Microsoft.AspNetCore.Identity;
+    using ShopNo1.Web.Helpers;
 
     public class SeedDb
     {
@@ -13,38 +13,38 @@
         private readonly IUserHelper userHelper;
         private Random random;
 
-
         public SeedDb(DataContext context, IUserHelper userHelper)
         {
             this.context = context;
             this.userHelper = userHelper;
             this.random = new Random();
         }
+
         public async Task SeedAsync()
         {
             await this.context.Database.EnsureCreatedAsync();
 
-            var user = await this.userHelper.GetUserByEmailAsync("evicente0703@gmail.com");
+            // Add user
+            var user = await this.userHelper.GetUserByEmailAsync("jzuluaga55@gmail.com");
             if (user == null)
             {
                 user = new User
                 {
-                    FirstName = "edwin",
-                    LastName = "vicente",
-                    Email = "evicente0703@gmail.com",
-                    UserName = "evicente0703@gmail.com",
-                    PhoneNumber = "58436020"
+                    FirstName = "Juan",
+                    LastName = "Zuluaga",
+                    Email = "jzuluaga55@gmail.com",
+                    UserName = "jzuluaga55@gmail.com",
+                    PhoneNumber = "3506342747"
                 };
 
-                var result = await this.userHelper.AddUserAsync(user, "1234568");
+                var result = await this.userHelper.AddUserAsync(user, "123456");
                 if (result != IdentityResult.Success)
                 {
                     throw new InvalidOperationException("Could not create the user in seeder");
                 }
             }
 
-
-
+            // Add products
             if (!this.context.Products.Any())
             {
                 this.AddProduct("iPhone X", user);
@@ -66,4 +66,5 @@
             });
         }
     }
+
 }
