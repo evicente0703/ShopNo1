@@ -1,12 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using ShopNo1.Web.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace ShopNo1.Web.Controllers.API
+﻿namespace ShopNo1.Web.Controllers.API
 {
+    using Data;
+    using Microsoft.AspNetCore.Mvc;
+
     [Route("api/[Controller]")]
     public class ProductsController : Controller
     {
@@ -20,7 +16,8 @@ namespace ShopNo1.Web.Controllers.API
         [HttpGet]
         public IActionResult GetProducts()
         {
-            return Ok(this.productRepository.GetAll());
+            return this.Ok(this.productRepository.GetAll());
         }
+
     }
 }
