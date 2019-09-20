@@ -29,6 +29,17 @@
         public double Stock { get; set; }
 
         public User User { get; set; }
+        public string ImageFullPath 
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(this.ImageUrl))
+                {
+                    return null;
+                }
+                return $"https://shopbyplants.azurewebsites.net{this.ImageUrl.Substring(1)}";
+            }
+        }
 
     }
 }
